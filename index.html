@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Compass vertical rhythm example</title>
+  <link href="stylesheets/styles.css" media="screen" rel="stylesheet" type="text/css" />
+  
+</head>
+<body>
+  <div class="container">
+    <p>我是預設的段落文字，此頁面使用 Fire.app 網站 26px 高的線條背景圖。</p>
+  
+    <p class="fs20">我要用跟預設不一樣的20px的字！<br />
+      用 adjust-font-size-to(20px) 就可以了。</p> 
+    <p class="fs40">我要用跟預設不一樣的40px的字！<br />
+      用 adjust-font-size-to(40px) 就可以了，會自動計算適用的行高。</p> 
+  
+    <p class="has-leader">我要在段落前面加上兩倍間距，使用 leader(2) 。</p>
+  
+    <p class="has-border">
+      也可以加上 border，使用 rhythm-borders() 。
+    </p> 
+    <p>總之不管怎麼插，除非插入圖片否則都不會破壞 vertical rhythm。</p>
+    <h2>但是如果使用了 normalize 之類的 reset ，有些間距必須自己重新指定否則 reset 之後的數值未必與 vertical rhythm 吻合。</h2>
+    <h3>例如上面的 H2 和這個 H3 就重新調整過。</h3> 
+    <p>不然接下來的東西會對不準。</p> 
+
+    <h3>此頁面使用的 SCSS 內容如下：</h3>
+    
+    <pre>
+@import "compass";
+@import "normalize";
+
+$base-font-size: 16px;
+$base-line-height: 26px;
+@include establish-baseline();
+
+body {
+  @include debug-vertical-alignment('bg.png');
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h2 {
+  @include adjust-font-size-to(36px);
+  @include rhythm(1,0,0,1,36px);
+}
+
+h3 {
+  @include adjust-font-size-to(24px);
+  @include rhythm(1,0,0,1,24px);
+}
+
+p {
+  margin: $base-line-height 0;
+} 
+
+pre {
+  @include rhythm-borders(1px);
+  border-color: #ccc;
+  border-radius: 5px;
+  background: #ddd;
+}
+
+.fs20 {
+  @include adjust-font-size-to(20px);
+}
+
+.fs40 {
+  @include adjust-font-size-to(40px);
+}
+
+.has-leader {
+  @include leader(2);
+}
+
+.has-border {
+  @include rhythm-borders();
+}
+    </pre>
+  </div>
+</body>
+</html>

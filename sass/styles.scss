@@ -1,0 +1,54 @@
+
+@import "compass";
+@import "normalize";
+
+$base-font-size: 16px;
+$base-line-height: 26px;
+@include establish-baseline();
+
+body {
+  @include debug-vertical-alignment('bg.png');
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+h2 {
+  @include adjust-font-size-to(36px);
+  @include rhythm(1,0,0,1,36px);
+}
+
+h3 {
+  @include adjust-font-size-to(24px);
+  @include rhythm(1,0,0,1,24px);
+}
+
+p {
+  margin: $base-line-height 0;
+} 
+
+pre {
+  @include rhythm-borders(1px);
+  border-color: #ccc;
+  border-radius: 5px;
+  background: #ddd;
+}
+
+.fs20 {
+  @include adjust-font-size-to(20px);
+}
+
+.fs40 {
+  @include adjust-font-size-to(40px);
+}
+
+.has-leader {
+  @include leader(2);
+}
+
+.has-border {
+  @include rhythm-borders();
+}
+
